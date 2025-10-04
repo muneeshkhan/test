@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="ASRS Automotion Technologies Pvt. Ltd" />
+  <title>ASRS — Automation & Services</title>
+  <style>
+    /* ----- Root / Base ----- */
+    :root{
+      --bg:#f6f8fb; --card:#ffffff; --accent:#0b5cff;
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1200px;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#f6f8fb, #eef4ff);transition:all 0.3s ease}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    /* ----- Utilities ----- */
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .row{display:flex;gap:18px;align-items:center}
+    .muted{color:var(--muted);font-size:14px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;border:0}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#3b82f6);color:#fff;box-shadow:0 8px 24px rgba(11,92,255,0.12)}
+    .btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+
+    /* ----- Header ----- */
+    header.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(11,92,255,0.06)}
+    .nav-row{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{width:62px;height:62px;border-radius:8px;object-fit:cover}
+    nav.main-nav{display:flex;gap:12px;align-items:center}
+    nav.main-nav a{padding:8px 12px;border-radius:8px;font-weight:600;color:var(--dark)}
+    nav.main-nav a:hover{background:rgba(11,92,255,0.06);color:var(--accent)}
+    .mobile-toggle{display:none;background:transparent;border:0;font-size:24px;cursor:pointer}
+
+    /* ----- Hero ----- */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:28px;
+      align-items:center;
+      padding:56px 0;
+      background-image: url("images/Muneesh1.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius:12px;
+      color:#0b1220;
+    }
+    .hero-left h1{font-size:40px;margin:0 0 12px;line-height:1.05}
+    .hero-left p.lead{margin:0 0 18px;color:var(--muted);max-width:640px}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-right{background:linear-gradient(180deg, rgba(11,92,255,0.06), rgba(59,130,246,0.02));padding:18px;border-radius:14px;box-shadow:0 12px 28px rgba(9,30,66,0.04)}
+    .search-box{display:flex;gap:8px;background:#fff;padding:10px;border-radius:10px;align-items:center;box-shadow:0 8px 20px rgba(16,24,40,0.06)}
+    .search-box input{border:0;outline:none;padding:8px;font-size:14px;width:100%}
+    .search-box button{padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+
+    .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+    .service-item{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(11,92,255,0.03);font-size:14px}
+    .service-item strong{display:block;margin-bottom:6px}
+
+    /* ----- Services Section ----- */
+    section.services{padding:48px 0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 12px 30px rgba(11,92,255,0.04);text-align:center}
+    .card h3{margin:10px 0 6px}
+    .card.control{background:linear-gradient(180deg, rgba(11,92,255,0.06), rgba(59,130,246,0.02))}
+
+    /* ----- Team ----- */
+    section.team{padding:40px 0}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+    .member{background:#fff;padding:14px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(11,92,255,0.03)}
+    .member img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:10px}
+
+    /* ----- Contact ----- */
+    section.contact{padding:48px 0}
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+    .form-control{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(11,92,255,0.08);outline:none}
+    input:focus,textarea:focus{box-shadow:0 6px 18px rgba(11,92,255,0.08);border-color:var(--accent)}
+    textarea{min-height:120px;resize:vertical}
+
+    /* ----- Footer ----- */
+    footer{padding:28px 0;background:#0f1724;color:#fff;border-top-left-radius:18px;border-top-right-radius:18px;margin-top:36px}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+
+    /* ----- Responsive ----- */
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .mobile-toggle{display:block}
+      nav.main-nav{display:none;position:absolute;right:20px;top:72px;background:linear-gradient(90deg,white, #f0f6ff);padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(2,6,23,0.08)}
+      nav.main-nav.show{display:flex;flex-direction:column}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .hero-left h1{font-size:28px}
+      .hero-right{order:2}
+    }
+
+    /* ----- Small animations ----- */
+    .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* ----- Dark Mode Toggle ----- */
+
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    body.dark-mode header.site-header {
+      background: rgba(18,24,36,0.85);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    body.dark-mode .card,
+    body.dark-mode .hero-right,
+    body.dark-mode .service-item,
+    body.dark-mode .member,
+    body.dark-mode aside {
+      background: var(--dark-card);
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .btn-primary {
+      background: linear-gradient(90deg, var(--dark-accent), #0b5cff);
+      color: #fff;
+    }
+
+    body.dark-mode nav.main-nav a {
+      color: #f3f4f6;
+    }
+
+    body.dark-mode nav.main-nav a:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--dark-accent);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Dark Mode Toggle Button -->
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container nav-row">
+      <a class="brand" href="#" aria-label="IATPL">
+        <img src="Logo.png" alt="IATPL logo" loading="lazy">
+        <div>
+          <div style="font-weight:700;color:#0b1220">ASRS Technologies Pvt. Ltd </div> 
+        </div>
+      </a>
+
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Primary">
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mainNav">☰</button>
+        <a href="#" class="active">Home</a>
+        <a href="#about">About us</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="container hero" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <p class="muted"><strong>ASRS INSTALLATION SERVICE</strong>— Jaipur, Rajasthan</p>
+        <h2 id="hero-heading">Broad Vision <br> Honest Service <br> Great Value</h2>
+        <p class="lead muted">We design, install and maintain automated material handling solutions — ASRS, conveyors, cranes, palletizers and turnkey automation for manufacturing & distribution.</p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contact">Get a Quote</a>
+          <a class="btn btn-outline" href="#services">Our Services</a>
+        </div>
+      </div>
+      
+ <section class="">
+  <div class="automation">
+    <h3>ASRS INSTALLATION SERVICE <br>Technologies Pvt. Ltd</h3>
+    <br><strong>Where We Build Your Visions</strong><br></br>
+
+Write a warm welcoming message for visitors. You can mention all the benefits or services with some real examples. You can also state how you emphasize on their well being. This often shows your concern and increases the chances of conversion.
+
+Tell people a little more to attract. You can mention some contact details as shown below to get in touch with visitors. ASRS Installations Service in bangalore</p>
+  </div>
+ </section>    
+
+      <aside class="hero-right" aria-label="Quick actions">
+        <div class="search-box fade-up" style="margin-bottom:12px">
+          <input type="search" placeholder="What are you looking for?" aria-label="Search services">
+          <button aria-label="Search">Search</button>
+        </div>
+
+        <div class="service-grid fade-up">
+          <div class="service-item"><strong>Mechanical Service</strong><div class="muted">Installations & structural works</div></div>
+          <div class="service-item"><strong>Electrical Service</strong><div class="muted">Panels, cabling, drives</div></div>
+          <div class="service-item"><strong>Project Reference</strong><div class="muted">ASRS & Conveyors</div></div>
+          <div class="service-item"><strong>Turnkey Solutions</strong><div class="muted">End-to-end automation</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="row" style="gap:8px">
+        <a class="btn btn-primary" href="tel:+917417096580">Call Us: +91 9193689362</a>
+        
+      </div>
+
+    
+    <!-- SERVICES -->
+    <section id="services" class="services container" aria-labelledby="svc-h">
+      <h2 id="svc-h" style="text-align:center">Our Value Added Services</h2>
+    
+      <div class="cards" style="margin-top:18px">
+      
+        <div class="card fade-up control"><h3>Control Technology</h3><img src="control.avif"></div>
+        <div class="card fade-up"><h3>Metal and Steel Construction</h3><img src="Metal.avif"></div>
+        <div class="card fade-up"><h3>Technical Manpower</h3><img src="Technical.avif"></div>
+        <div class="card fade-up"><h3>Annual Maintenance Contracts</h3><img src="annual.avif"></div>
+        <div class="card fade-up"><h3>Turnkey Automated Bag Palletizer Solution</h3><img src="Turnkey.avif"></div>
+        <div class="card fade-up"><h3>Local material handling equipment</h3><img src="local.avif"></div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="about" class="team container" aria-labelledby="team-h">
+      <h2 id="team-h" style="text-align:center">Our Team</h2>
+      <div class="team-grid" style="margin-top:18px">
+        <div class="slider">
+  <button class="prev" onclick="changeSlide(-1)">❮</button>
+  <img id="sliderImg" src="annual.avif " alt="Team Member" style="width:auto;border-radius:12px;box-shadow:0 8px 20px rgba(11,92,255,0.03);height:auto;max-height:300px;object-fit:cover">
+  <button class="next" onclick="changeSlide(1)">❯</button>
+</div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact container" aria-labelledby="contact-h">
+      <h2 id="contact-h" style="text-align:center">Get in Touch</h2>
+      <p id="contact-h" style="text-align:center">Add a couple of lines that tell users how easily they can get in touch with you.<br> People prefer services where they can contact providers right away.
+
+
+</p>
+      <div class="contact-grid" style="margin-top:18px">
+        <form id="contactForm" novalidate>
+          <div class="form-control"><label for="fname">Name*</label><input id="fname" name="fname" required placeholder="Your Name"></div>
+          <div class="form-control"><label for="email">Email*</label><input id="email" type="email" name="email" required placeholder="Enter your email"></div>
+          <div class="form-control"><label for="phone">Phone*</label><input id="phone" name="phone" required placeholder="Enter your phone number"></div>
+          <div class="form-control"><label for="message">Message*</label><textarea id="message" name="message" required placeholder="Describe your project"></textarea></div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <button class="btn btn-primary" type="submit">Send</button>
+            <div id="formMsg" class="muted"></div>
+          </div>
+        </form>
+        <aside style="background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 28px rgba(11,92,255,0.04)" aria-label="Contact Information">
+          <h3>Contact Info</h3>
+          <p class="muted">Call Us: <strong>+91 9193689362</strong></p>
+          <p class="muted">Email: <strong>yaseenkhan@gmail.com</strong></p>
+          <p class="muted">Location:<br><strong>Jaipur, Rajasthan</strong></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container footer-grid">
+      <div><h3>ASRS</h3><p class="muted">Partner in automation services.</p></div>
+      <div><h4 style="margin:0 0 8px;color:#fff">Quick Links</h4><div class="muted">
+        <a href="#">Home</a><br>
+        <a href="#about">About us</a><br>
+        <a href="#services">Services</a><br>
+        <a href="#projects">Projects</a><br>
+        <a href="#contact">Contact</a></div></div>
+      <div><h4 style="margin:0 0 8px;color:#fff">Contact</h4><p class="muted">T: +91 9193689362</p><p class="muted">E: yaseenkhan@gmail.com</p><p class="muted">ASRS Technologies Pvt. Ltd
+
+</p></div>
+    </div>
+  </footer>
+
+  <script>
+//slider get 
+let images = ['annual.avif', 'control.avif', 'local.avif'];
+let currentIndex = 0;
+
+function changeSlide(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = images.length - 1;
+  if (currentIndex >= images.length) currentIndex = 0;
+  document.getElementById('sliderImg').src = images[currentIndex];
+}
+
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mainNav = document.getElementById('mainNav');
+    mobileToggle.addEventListener('click', () => {
+      const isShown = mainNav.classList.toggle('show');
+      mobileToggle.setAttribute('aria-expanded', String(isShown));
+    });
+
+    // Simple contact form demo validation
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const out = document.getElementById('formMsg');
+
+      if (!name || !email || !phone || !msg) {
+        out.textContent = '⚠️ Please fill all required fields.'; out.style.color = 'crimson'; return;
+      }
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        out.textContent = '⚠️ Invalid email.'; out.style.color = 'crimson'; return;
+      }
+      out.textContent = '✅ Message sent (demo).'; out.style.color = 'green'; this.reset();
+    });
+
+    // Dark mode toggle
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if(document.body.classList.contains('dark-mode')){
+        localStorage.setItem('darkMode','enabled');
+      } else {
+        localStorage.setItem('darkMode','disabled');
+      }
+    });
+
+    // Load dark mode preference
+    if(localStorage.getItem('darkMode') === 'enabled'){
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+</html>
