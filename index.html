@@ -28,51 +28,283 @@
     .row{display:flex;gap:18px; align-items:center; justify-content: center;}
     .muted{color:var(--muted);font-size:14px}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;border:0}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#3b82f6);color:#fff;box-shadow:0 8px 24px rgba(11,92,255,0.12)}
-    .btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), #3b82f6);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(11,92,255,0.12);
+      background-color: #0af;
+    }
+    .btn-primary:hover {
+      background-color: #08c;
+      color: #fff;
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid #0af;
+      color: #0af;
+    }
+    /* Duplicate .btn-outline:hover removed to fix selector error */
 
     /* ----- Header ----- */
-    header.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(11,92,255,0.06)}
-    .nav-row{height:72px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:62px;height:62px;border-radius:8px;object-fit:cover}
-    nav.main-nav{display:flex;gap:12px;align-items:center}
-    nav.main-nav a{padding:8px 12px;border-radius:8px;font-weight:600;color:var(--dark)}
-    nav.main-nav a:hover{background:rgba(11,92,255,0.06);color:var(--accent)}
-    .mobile-toggle{display:none;background:transparent;border:0;font-size:24px;cursor:pointer}
+    /* ----- Header Styles ----- */
+ /* ----- General Header ----- */
 
-    /* ----- Hero ----- */
-    .hero{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:28px;
-      align-items:center;
-      padding:40px 16px;
-      background-image: url("images/Muneesh1.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius:12px;
-      color:#0b1220;
-    }
-    .hero-left h1{font-size:40px;margin:0 0 12px;line-height:1.05}
-    .hero-left p.lead{margin:0 0 18px;color:var(--muted);max-width:640px}
-    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-    .hero-right{background:linear-gradient(180deg, rgba(11,92,255,0.06), rgba(59,130,246,0.02));padding:18px;border-radius:14px;box-shadow:0 12px 28px rgba(9,30,66,0.04)}
-    .search-box{display:flex;gap:8px;background:#fff;padding:10px;border-radius:10px;align-items:center;box-shadow:0 8px 20px rgba(16,24,40,0.06)}
-    .search-box input{border:0;outline:none;padding:8px;font-size:14px;width:100%}
-    .search-box button{padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+.site-header {
+  background-color: #0b1220;
+  padding: 15px 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
 
-    .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
-    .service-item{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(11,92,255,0.03);font-size:14px}
-    .service-item strong{display:block;margin-bottom:6px}
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ----- Brand ----- */
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  margin-right: 15px;
+  box-shadow: 0 4px 10px rgba(11,92,255,0.3);
+  transition: transform 0.3s ease;
+}
+
+.brand img:hover {
+  transform: scale(1.1);
+}
+
+.brand-name {
+  font-weight: 700;
+  color: #0af;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* ----- Navigation Menu ----- */
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 25px;
+}
+
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.site-nav a:hover {
+  color: #0af;
+}
+
+/* ----- Dropdown Menu ----- */
+.site-nav li {
+  position: relative;
+}
+
+.site-nav .dropdown {
+  display: none;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background-color: #0b1220;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  padding: 10px 0;
+  min-width: 180px;
+  z-index: 100;
+}
+
+.site-nav .dropdown li {
+  padding: 0;
+}
+
+.site-nav .dropdown a {
+  display: block;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+.site-nav li:hover .dropdown {
+  display: block;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+  .nav-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-nav .dropdown {
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+
+/* Responsive - small screens */
+@media (max-width: 600px) {
+  .brand img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .brand-name div {
+    font-size: 1.2rem;
+  }
+}
+   /* ----- Hero ----- */
+
+    /* ----- Hero Section ----- */
+.hero {
+  display: flex;
+  justify-content: center;  /* Horizontal center */
+  align-items: center;      /* Vertical center */
+  flex-direction: column;   /* Stack content vertically */
+  text-align: center;       /* Text center aligned */
+  padding: 80px 20px;       /* Top & bottom padding */
+  background: linear-gradient(135deg, #0b1220, #0a2b5b); /* Attractive gradient */
+  color: #fff;
+  min-height: 70vh;         /* Hero section height */
+}
+
+.hero-left p.muted {
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.hero-left h2 {
+  font-size: 2.5rem;
+  margin: 15px 0;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.hero-left p.lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+/* .btn-outline styles merged above to avoid duplicate selector error */
+  color: #fff;
+}
+
+.btn-outline:hover {
+  background-color: #0af;
+  color: #0b1220;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+  .hero-left h2 {
+    font-size: 2rem;
+  }
+  .hero-left p.lead {
+    font-size: 1rem;
+  }
+}
 
     /* ----- Services Section ----- */
-    section.services{padding:48px 0}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 12px 30px rgba(11,92,255,0.04);text-align:center}
-    .card h3{margin:10px 0 6px}
-    .card.control{background:linear-gradient(180deg, rgba(11,92,255,0.06), rgba(59,130,246,0.02))}
+    /* ----- Services Section ----- */
+.services {
+  padding: 60px 20px;
+  background-color: #f6f8fb;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #0b1220;
+}
+
+/* ----- Cards Container ----- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px;      /* Space between cards */
+  justify-items: center; /* Center cards horizontally */
+  align-items: stretch;
+}
+
+/* ----- Individual Card ----- */
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #0b1220;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ----- Fade-Up Animation ----- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
 
     /* ----- Team ----- */
   
@@ -104,7 +336,7 @@
   max-height: 300px;
   object-fit: cover;
 }
-    .member{background:#fff;padding:14px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(11,92,255,0.03)}
+    .member{background:#444;padding:14px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(11,92,255,0.03)}
     .member img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:10px}
   
 
@@ -128,8 +360,47 @@
     textarea{min-height:120px;resize:vertical}
 
     /* ----- Footer ----- */
-    footer{padding:28px 0;background:#0f1724;color:#fff;border-top-left-radius:18px;border-top-right-radius:18px;margin-top:36px}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+
+    footer {
+  background-color: #222; /* Footer ka background */
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center; /* text center align */
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column; /* Column me items by default */
+  align-items: center;    /* Center horizontally */
+  gap: 20px;              /* Grid items ke beech gap */
+}
+
+/* Quick links aur contact text color */
+.footer-grid .muted a {
+  color: #fff;
+  text-decoration: none;
+  margin: 2px 0;
+  display: inline-block;
+}
+
+/* Hover effect for links */
+.footer-grid .muted a:hover {
+  text-decoration: underline;
+  color: #0af;
+}
+
+/* Responsive - large screens me row layout */
+@media (min-width: 768px) {
+  .footer-grid {
+    flex-direction: row;      /* Items side by side */
+    justify-content: center;  /* Center horizontally */
+    text-align: left;         /* Text left aligned in each box */
+  }
+  .footer-grid > div {
+    margin: 0 20px;           /* Items ke beech spacing */
+  }
+}
+
 
     /* ----- Responsive ----- */
     @media (max-width: 980px){
@@ -145,7 +416,7 @@
     }
 
     /* ----- Small animations ----- */
-    .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards}
+    /* Duplicate .fade-up selector removed to fix error */
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
     /* ----- Dark Mode Toggle ----- */
@@ -203,24 +474,31 @@ section {
 
   <!-- HEADER -->
   <header class="site-header" role="banner">
-    <div class="container nav-row">
-      <a class="brand" href="#" aria-label="A K ENTERPRISES">
-        <img src="Logo.png" alt="A K ENTERPRISES" loading="lazy">
-        <div>
-          <div style="font-weight:700;color:#0b1220">A K ENTERPRISES</div> 
-        </div>
-      </a>
+  <div class="container nav-row">
+    <a class="brand" href="#" aria-label="A K ENTERPRISES">
+      <img src="Logo.png" alt="A K ENTERPRISES" loading="lazy">
+      <div class="brand-name">A K ENTERPRISES</div>
+    </a>
+    
+    <nav class="site-nav">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li>
+          <a href="#services">Services ▾</a>
+          <ul class="dropdown">
+            <li><a href="#web">Web Development</a></li>
+            <li><a href="#app">App Development</a></li>
+            <li><a href="#seo">SEO</a></li>
+          </ul>
+        </li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Primary">
-        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mainNav">☰</button>
-        <a href="#" class="active">Home</a>
-        <a href="#about">About us</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
   <!-- HERO -->
   <main>
@@ -247,24 +525,10 @@ Tell people a little more to attract. You can mention some contact details as sh
   </div>
  </section>    
 
-      <aside class="hero-right" aria-label="Quick actions">
-        <div class="search-box fade-up" style="margin-bottom:12px">
-          <input type="search" placeholder="What are you looking for?" aria-label="Search services">
-          <button aria-label="Search">Search</button>
-        </div>
-
-        <div class="service-grid fade-up">
-          <div class="service-item"><strong>Mechanical Service</strong><div class="muted">Installations & structural works</div></div>
-          <div class="service-item"><strong>Electrical Service</strong><div class="muted">Panels, cabling, drives</div></div>
-          <div class="service-item"><strong>Project Reference</strong><div class="muted">ASRS & Conveyors</div></div>
-          <div class="service-item"><strong>Turnkey Solutions</strong><div class="muted">End-to-end automation</div></div>
-        </div>
-      </aside>
-    </section>
 
     <!--Number call-->
 
-    <div class="row" style="gap:8px">
+    <div class="row" style="gap:8px;margin-bottom:16px;margin-top:16px">
         <a class="btn btn-primary" href="tel:+91 9193689362">Call Us: +91 9193689362</a>
     </div>
 
