@@ -90,25 +90,151 @@
 }
 
 /* ----- Navigation Menu ----- */
-.site-nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 25px;
+
+/* Hamburger Button */
+/* Removed duplicate .menu-toggle selector to fix error */
+
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #00a8ff;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* site-nav modifications */
+
+/* Desktop/Laptop View - Header Navigation */
+.site-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    background: transparent;
+    position: relative;
 }
 
 .site-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 0;
-  transition: color 0.3s ease;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: color 0.3s;
 }
 
 .site-nav a:hover {
-  color: #0af;
+    color: #00a8ff;
 }
+
+/* Hide hamburger on desktop */
+.menu-toggle {
+    display: none;
+}
+
+/* Mobile View - Hamburger Menu */
+@media (max-width: 768px) {
+    
+    /* Show hamburger button */
+    .menu-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+    }
+    
+    .menu-toggle span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: #00a8ff;
+        margin: 6px 0;
+        transition: 0.3s;
+    }
+    
+    /* Mobile navigation - sidebar */
+    .site-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background: rgba(10, 25, 47, 0.98);
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .site-nav.active {
+        right: 0;
+    }
+    
+    .site-nav a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+/* Hamburger Button */
+/*.menu-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #00a8ff;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* site-nav modifications */
+/*.site-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: transparent;
+    padding:20px;
+    transition: right 0.3s ease;
+    z-index: 999;
+}
+
+.site-nav.active {
+    right: 0;
+}
+
+.site-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.site-nav a:hover{
+  color:#00a8ff
+} */
 
 /* ----- Dropdown Menu ----- */
 .site-nav li {
@@ -229,7 +355,6 @@
   }
 }
 
-    /* ----- Services Section ----- */
     /* ----- Services Section ----- */
 .services {
   padding: 60px 20px;
@@ -480,22 +605,21 @@ section {
       <div class="brand-name">A K ENTERPRISES</div>
     </a>
     
-    <nav class="site-nav">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li>
-          <a href="#services">Services ▾</a>
-          <ul class="dropdown">
-            <li><a href="#web">Web Development</a></li>
-            <li><a href="#app">App Development</a></li>
-            <li><a href="#seo">SEO</a></li>
-          </ul>
-        </li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+   <!-- Hamburger Button -->
+<button class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<!-- Your existing navigation -->
+<nav class="site-nav" id="siteNav">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
   </div>
 </header>
 
@@ -604,6 +728,13 @@ Tell people a little more to attract. You can mention some contact details as sh
 //slider get 
 let images = ['annual.avif', 'control.avif', 'local.avif'];
 let currentIndex = 0;
+
+//Toggle button
+
+function toggleMenu() {
+    const siteNav = document.getElementById('siteNav');
+    siteNav.classList.toggle('active');
+}
 
 function changeSlide(direction) {
   currentIndex += direction;
