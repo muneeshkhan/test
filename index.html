@@ -736,6 +736,25 @@ function toggleMenu() {
     siteNav.classList.toggle('active');
 }
 
+// Close menu when clicking on any link
+document.querySelectorAll('.site-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('siteNav').classList.remove('active');
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    const siteNav = document.getElementById('siteNav');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // Check if click is outside menu and toggle button
+    if (!siteNav.contains(event.target) && !menuToggle.contains(event.target)) {
+        siteNav.classList.remove('active');
+    }
+});
+
+
 function changeSlide(direction) {
   currentIndex += direction;
   if (currentIndex < 0) currentIndex = images.length - 1;
