@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ASRS Automotion Technologies Pvt. Ltd" />
-  <title>ASRS — Automation & Services</title>
+  <meta name="description" content="A K ENTERPRISES" />
+  <title>A K ENTERPRISES</title>
   <style>
     /* ----- Root / Base ----- */
     
 *{
- /* outline: 1px solid rgba(255,0,0,0.1); */
+
   box-sizing:border-box;
 }
 
@@ -75,14 +75,53 @@
     .card.control{background:linear-gradient(180deg, rgba(11,92,255,0.06), rgba(59,130,246,0.02))}
 
     /* ----- Team ----- */
+  
     section.team{padding:40px 0}
-    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+    .team-grid{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap: wrap;}
+    .slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* buttons ke beech thoda gap */
+}
+
+/* Slider buttons style (optional) */
+.slider button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Slider image style */
+#sliderImg {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(11,92,255,0.03);
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
     .member{background:#fff;padding:14px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(11,92,255,0.03)}
     .member img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:10px}
+  
 
     /* ----- Contact ----- */
     section.contact{padding:48px 0}
+    @media(max-width: 980px){
     .contact-grid{display:grid;grid-template-columns: 1fr;gap: 16px;align-items:start;padding:0 16px}
+    .contact-grid form,
+  .contact-grid aside {
+    width: 100%; /* Full width for mobile */
+  }
+
+  .contact-grid input,
+  .contact-grid textarea {
+    width: 100%; /* Full width input fields */
+  }
+    }
     .form-control{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
     input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(11,92,255,0.08);outline:none}
     input:focus,textarea:focus{box-shadow:0 6px 18px rgba(11,92,255,0.08);border-color:var(--accent)}
@@ -165,10 +204,10 @@ section {
   <!-- HEADER -->
   <header class="site-header" role="banner">
     <div class="container nav-row">
-      <a class="brand" href="#" aria-label="IATPL">
-        <img src="Logo.png" alt="IATPL logo" loading="lazy">
+      <a class="brand" href="#" aria-label="A K ENTERPRISES">
+        <img src="Logo.png" alt="A K ENTERPRISES" loading="lazy">
         <div>
-          <div style="font-weight:700;color:#0b1220">ASRS Technologies Pvt. Ltd </div> 
+          <div style="font-weight:700;color:#0b1220">A K ENTERPRISES</div> 
         </div>
       </a>
 
@@ -187,7 +226,7 @@ section {
   <main>
     <section class="container hero" aria-labelledby="hero-heading">
       <div class="hero-left">
-        <p class="muted"><strong>ASRS INSTALLATION SERVICE</strong>— Jaipur, Rajasthan</p>
+        <p class="muted"><strong>A K ENTERPRISES</strong>— Jaipur, Rajasthan</p>
         <h2 id="hero-heading">Broad Vision <br> Honest Service <br> Great Value</h2>
         <p class="lead muted">We design, install and maintain automated material handling solutions — ASRS, conveyors, cranes, palletizers and turnkey automation for manufacturing & distribution.</p>
 
@@ -199,7 +238,7 @@ section {
       
  <section class="">
   <div class="automation">
-    <h3>ASRS INSTALLATION SERVICE <br>Technologies Pvt. Ltd</h3>
+    <h3>A K ENTERPRISES</h3>
     <br><strong>Where We Build Your Visions</strong><br></br>
 
 Write a warm welcoming message for visitors. You can mention all the benefits or services with some real examples. You can also state how you emphasize on their well being. This often shows your concern and increases the chances of conversion.
@@ -283,7 +322,7 @@ Tell people a little more to attract. You can mention some contact details as sh
   <footer role="contentinfo">
     <div class="container footer-grid">
       <div><h3>A K </h3><p class="muted">ENTERPRISES.</p></div>
-      <aside style="background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 28px rgba(11,92,255,0.04)" aria-label="Contact Information">
+      <aside style="padding:18px;border-radius:12px;box-shadow:0 12px 28px rgba(11,92,255,0.04)" aria-label="Contact Information">
           <h3>Contact Info</h3>
           <p class="muted">Call Us: <strong>+91 9193689362</strong></p>
           <p class="muted">Email: <strong>yaseenkhan@gmail.com</strong></p>
