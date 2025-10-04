@@ -9,7 +9,7 @@
     /* ----- Root / Base ----- */
     
 *{
-  outline: 1px solid rgba(255,0,0,0.1);
+ /* outline: 1px solid rgba(255,0,0,0.1); */
   box-sizing:border-box;
 }
 
@@ -82,7 +82,7 @@
 
     /* ----- Contact ----- */
     section.contact{padding:48px 0}
-    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+    .contact-grid{display:grid;grid-template-columns: 1fr;gap: 16px;align-items:start;padding:0 16px}
     .form-control{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
     input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(11,92,255,0.08);outline:none}
     input:focus,textarea:focus{box-shadow:0 6px 18px rgba(11,92,255,0.08);border-color:var(--accent)}
@@ -151,6 +151,11 @@
   box-sizing: border-box;
   overflow-x: hidden; /* agar zaroori ho */
   padding-inline: 16px; /* agar content chipa hua ho */
+}
+
+section {
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
   </style>
