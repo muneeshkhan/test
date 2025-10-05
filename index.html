@@ -9,7 +9,8 @@
     /* ----- Root / Base ----- */
     
 *{
-
+  margin: 0;
+  padding: 0;
   box-sizing:border-box;
 }
 
@@ -19,7 +20,7 @@
       --max:1200px;
       --radius:12px;
     }
-    html,body{margin:0px;height:auto;padding:0px;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#f6f8fb, #eef4ff);transition:all 0.3s ease}
+    html,body{margin:0px;height:auto;padding:0px;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:#fff;transition:all 0.3s ease}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
 
@@ -50,7 +51,7 @@
  /* ----- General Header ----- */
 
 .site-header {
-  background-color: #0b1220;
+  background-color: #1257e0;
   padding: 15px 20px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
@@ -84,7 +85,7 @@
 
 .brand-name {
   font-weight: 700;
-  color: #0af;
+  color: #fff;
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
@@ -186,52 +187,6 @@
 }
 
 /* Hamburger Button */
-/*.menu-toggle {
-    display: block;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background: #00a8ff;
-    margin: 6px 0;
-    transition: 0.3s;
-}
-
-/* site-nav modifications */
-/*.site-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    background: transparent;
-    padding:20px;
-    transition: right 0.3s ease;
-    z-index: 999;
-}
-
-.site-nav.active {
-    right: 0;
-}
-
-.site-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    transition: color 0.3s;
-}
-
 .site-nav a:hover{
   color:#00a8ff
 } */
@@ -306,39 +261,70 @@
 }
    /* ----- Hero ----- */
 
-    /* ----- Hero Section ----- */
-.hero {
-  display: flex;
-  justify-content: center;  /* Horizontal center */
-  align-items: center;      /* Vertical center */
-  flex-direction: column;   /* Stack content vertically */
-  text-align: center;       /* Text center aligned */
-  padding: 80px 20px;       /* Top & bottom padding */
-  background: linear-gradient(135deg, #0b1220, #0a2b5b); /* Attractive gradient */
-  color: #fff;
-  min-height: 70vh;         /* Hero section height */
+   /* Background video setup */
+ /* ===== Reset ===== */
+/* Duplicate universal selector removed to fix error */
+
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-.hero-left p.muted {
-  color: rgba(255,255,255,0.7);
-  margin: 0 0 10px;
-  font-size: 1rem;
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* fallback for desktop */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.hero-left {
+  position: relative;
+  z-index: 2;
+  padding-left: 10%;
 }
 
 .hero-left h2 {
-  font-size: 2.5rem;
-  margin: 15px 0;
-  line-height: 1.3;
-  font-weight: 700;
+  font-size: 3rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
 
-.hero-left p.lead {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 700px;
-/* .btn-outline styles merged above to avoid duplicate selector error */
-  color: #fff;
+/* Responsive fallback */
+@media (max-width: 768px) {
+  .hero-left h2 { font-size: 2rem; text-align: center; }
+  .hero { height: auto; min-height: 60vh; }
 }
+
+/* ===== Overlay (for dark effect) ===== */
+
+
+    /* ----- Hero Section ----- */
 
 .btn-outline:hover {
   background-color: #0af;
@@ -367,6 +353,30 @@
   font-weight: 700;
   margin-bottom: 30px;
   color: #0b1220;
+}
+
+/* First image section */
+
+.firstimage{
+  width: 200px;
+  height: 100px;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  place-items: center;
+  align-items: center;
+  justify-content: center; 
+}
+.firstimage img{
+  width: 100%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
 }
 
 /* ----- Cards Container ----- */
@@ -626,22 +636,30 @@ section {
 
   <!-- HERO -->
   <main>
-    <section class="container hero" aria-labelledby="hero-heading">
-      <div class="hero-left">
-        <p class="muted"><strong>A K ENTERPRISES</strong>— Jaipur, Rajasthan</p>
-        <h2 id="hero-heading">Broad Vision <br> Honest Service <br> Great Value</h2>
-        <p class="lead muted">We design, install and maintain automated material handling solutions — ASRS, conveyors, cranes, palletizers and turnkey automation for manufacturing & distribution.</p>
+    <!-- HERO -->
+<section class="container hero" aria-labelledby="hero-heading">
+  <!-- Background video -->
+  <video autoplay muted loop playsinline class="hero-video" aria-describedby="video-desc">
+    <source src="file.mp4" type="video/mp4">
+    <track kind="subtitles" src="background.vtt" srclang="en" label="English Subtitles" default>
+    Your browser does not support the video tag.
+  </video>
+  <div id="video-desc" style="display:none;">
+    <a href="background-desc.txt">Video Description File</a>
+  </div>
 
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="#contact">Get a Quote</a>
-          <a class="btn btn-outline" href="#services">Our Services</a>
-        </div>
-      </div>
-      
+  <!-- Content overlay -->
+  <div class="hero-overlay"></div>
+
+  <div class="hero-left">
+    <h2 id="hero-heading">Broad Vision <br> Honest Service <br> Great Value</h2>
+  </div>
+</section>
+  
  <section class="">
   <div class="automation">
-    <h3>A K ENTERPRISES</h3>
-    <br><strong>Where We Build Your Visions</strong><br></br>
+    <h2>A K ENTERPRISES</h2>
+    <br><h3><strong>Where We Build Your Visions</strong></h3><br></br>
 
 Write a warm welcoming message for visitors. You can mention all the benefits or services with some real examples. You can also state how you emphasize on their well being. This often shows your concern and increases the chances of conversion.
 
@@ -652,10 +670,16 @@ Tell people a little more to attract. You can mention some contact details as sh
 
     <!--Number call-->
 
-    <div class="row" style="gap:8px;margin-bottom:16px;margin-top:16px">
-        <a class="btn btn-primary" href="tel:+91 9193689362">Call Us: +91 9193689362</a>
+    <div class="row" style="gap:8px; margin-bottom:20px; margin-top:20px">
+        <a class="btn btn-primary" href="tel:+91 7417096580">Call Us: +91 7417096580</a>
     </div>
 
+<!--First Image-->
+
+    <section>
+      <div class="firstimage" style="gap:8px; margin-bottom:20px; margin-top:20px"> <img src="firstphoto.avif">
+    </div>
+    </section>
     
     <!-- SERVICES -->
     <section id="services" class="services container" aria-labelledby="svc-h">
@@ -754,6 +778,11 @@ document.addEventListener('click', (event) => {
     }
 });
 
+//Background video
+
+
+// Update on resize
+window.addEventListener('resize', setHeroHeight);
 
 function changeSlide(direction) {
   currentIndex += direction;
