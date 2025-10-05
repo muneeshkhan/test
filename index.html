@@ -456,6 +456,7 @@ body {
     section.team{padding:40px 0}
     .team-grid{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap: wrap;}
     .slider {
+  position: relative;    
   display: flex;
   justify-content: center;
   align-items: center;
@@ -464,12 +465,29 @@ body {
 
 /* Slider buttons style (optional) */
 .slider button {
-  background: var(--accent);
-  color: #fff;
+  background: #444;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  z-index: 10;
+  font-size: 24px;
   border: none;
   border-radius: 6px;
-  padding: 6px 12px;
+  padding: 15px 20px;
+  color: #fff;
   cursor: pointer;
+  transition: background 0.3s;
+}
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+button.prev:hover,button.next:hover {
+  background: rgba(255,255,255,0.6);
+  color: #fff;
 }
 
 /* Slider image style */
@@ -701,7 +719,7 @@ Tell people a little more to attract. You can mention some contact details as sh
         <div class="card fade-up"><h3>Metal and Steel Construction</h3><img src="Metal.avif"></div>
         <div class="card fade-up"><h3>Technical Manpower</h3><img src="Technical.avif"></div>
         <div class="card fade-up"><h3>Annual Maintenance Contracts</h3><img src="annual.avif"></div>
-        <div class="card fade-up"><h3>Turnkey Automated Bag Palletizer Solution</h3><img src="Turnkey.avif"></div>
+        <div class="card fade-up"><h3>Turnkey Automated Bag Palletizer Solution</h3><img src="yaseenphoto.jpg"></div>
         <div class="card fade-up"><h3>Local material handling equipment</h3><img src="local.avif"></div>
       </div>
     </section>
