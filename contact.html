@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Futuristic Cyberpunk</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent-1:#00e5ff;
+      --accent-2:#7b61ff;
+      --muted:rgba(255,255,255,0.55);
+      --font:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      --radius:14px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background: radial-gradient(circle at 20% 30%, #050b20 0%, #01020a 100%);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      color:#e6f0ff;
+    }
+
+    /* Animated gradient backdrop */
+    .bg-gradient{
+      position:fixed;
+      inset:0;
+      background:linear-gradient(130deg, #002244, #080028, #002244, #080028);
+      background-size:400% 400%;
+      animation:shift 20s ease infinite;
+      z-index:0;
+    }
+    @keyframes shift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* Neon particle layer */
+    #bgParticles{
+      position:fixed;inset:0;z-index:1;pointer-events:none;
+    }
+
+    /* Floating hologram animation for card */
+    .card{
+      position:relative;
+      z-index:2;
+      max-width:460px;
+      width:100%;
+      padding:28px 26px;
+      border-radius:var(--radius);
+      background:rgba(8,12,20,0.8);
+      backdrop-filter:blur(12px);
+      box-shadow:0 0 40px rgba(0,229,255,0.1), inset 0 0 30px rgba(123,97,255,0.05);
+      border:1px solid rgba(255,255,255,0.05);
+      transform:perspective(600px) rotateX(0deg);
+      animation:floatCard 6s ease-in-out infinite alternate;
+    }
+    @keyframes floatCard{
+      0%{transform:perspective(600px) rotateX(0deg) translateY(0);}
+      50%{transform:perspective(600px) rotateX(3deg) translateY(-10px);}
+      100%{transform:perspective(600px) rotateX(0deg) translateY(0);}
+    }
+
+    /* Heading hologram pulse */
+    h2{
+      text-align:center;
+      font-size:1.8rem;
+      font-weight:800;
+      letter-spacing:1px;
+      margin:0 0 20px;
+      color:#00eaff;
+      text-shadow:0 0 10px rgba(0,229,255,0.4),0 0 20px rgba(123,97,255,0.4);
+      animation:glowPulse 3s ease-in-out infinite;
+    }
+    @keyframes glowPulse{
+      0%,100%{text-shadow:0 0 6px rgba(0,229,255,0.3),0 0 12px rgba(123,97,255,0.3);}
+      50%{text-shadow:0 0 18px rgba(0,229,255,0.7),0 0 36px rgba(123,97,255,0.7);}
+    }
+
+    form{display:flex;flex-direction:column;gap:14px}
+    .field{position:relative;transition:transform .3s ease;}
+    .field:hover{transform:translateY(-2px) scale(1.01);}
+
+    input,textarea{
+      width:100%;
+      padding:16px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.03);
+      color:#e8f6ff;
+      font-size:15px;
+      outline:none;
+      transition:border-color .25s, box-shadow .25s, background-color .25s, color .25s;
+    }
+
+    input:focus,textarea:focus{
+      border-color:rgba(0,229,255,0.4);
+      box-shadow:0 0 15px rgba(0,229,255,0.2);
+    }
+
+    label.floating{
+      position:absolute;left:14px;top:14px;color:var(--muted);
+      transition:all .25s ease;pointer-events:none;font-weight:600;font-size:13px;
+    }
+    .field.filled label,
+    input:focus + label,
+    textarea:focus + label{
+      transform:translateY(-48%) scale(.88);
+      color:var(--accent-1);
+    }
+
+    /* 👇 Added: make manually typed text fields have same white BG as autofill */
+    .field.filled input,
+    .field.filled textarea,
+    input:focus,
+    textarea:focus {
+      background: #fff;
+      color: #051421;
+    }
+    /* 👆 End of addition */
+
+    /* Keep autofill also consistent */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+      -webkit-text-fill-color: #051421 !important;
+      caret-color: #051421 !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* Futuristic shimmer on button */
+    .btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;
+      border:none;
+      border-radius:10px;
+      font-weight:800;
+      font-size:16px;
+      cursor:pointer;
+      color:#051421;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      box-shadow:0 0 30px rgba(0,229,255,0.25);
+      transition:transform .2s ease;
+    }
+    .btn:hover{transform:scale(1.04);}
+    .btn::before{
+      content:"";
+      position:absolute;
+      top:0;left:-80%;
+      width:60%;height:100%;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,0.6),transparent);
+      animation:shimmer 3s infinite;
+    }
+    @keyframes shimmer{
+      0%{left:-80%;}
+      50%{left:140%;}
+      100%{left:140%;}
+    }
+
+    .btn .loader{
+      width:16px;height:16px;border:2px solid rgba(255,255,255,0.8);border-top-color:transparent;
+      border-radius:50%;animation:spin .9s linear infinite;display:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .btn.sending .loader{display:block}
+    .btn.success{background:linear-gradient(90deg,#4ade80,#00e5ff);}
+
+    #formMessage{
+      margin-top:10px;
+      text-align:center;
+      font-weight:600;
+      min-height:22px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-gradient"></div>
+  <div id="bgParticles"></div>
+
+  <aside class="card">
+    <h2>Contact Us</h2>
+    <form id="contactForm" novalidate>
+      <div class="field">
+        <input id="name" name="name" type="text" required />
+        <label for="name" class="floating">Your name</label>
+      </div>
+
+      <div class="field">
+        <input id="email" name="email" type="email" required />
+        <label for="email" class="floating">Email address</label>
+      </div>
+
+      <div class="field">
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message" class="floating">Tell me about your project</label>
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn">
+        <span class="btn-text">Send Message</span>
+        <span class="loader"></span>
+      </button>
+      <div id="formMessage"></div>
+    </form>
+  </aside>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.3/tsparticles.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <script>
+   const EMAILJS_USER_ID = 'NGtHSpNXkIBeK_Q84';
+const EMAILJS_SERVICE = 'service_vxgzd5h';
+const EMAILJS_TEMPLATE = 'template_7ow2lta';
+emailjs.init(EMAILJS_USER_ID);
+
+const form = document.getElementById('contactForm');
+const btn = document.getElementById('submitBtn');
+const loader = btn.querySelector('.loader');
+const btnText = btn.querySelector('.btn-text');
+const msg = document.getElementById('formMessage');
+
+// ⚡ Neon glow animation for field error
+function showFieldError(field) {
+  field.style.borderColor = '#ff3366';
+  field.style.boxShadow = '0 0 10px rgba(255,51,102,0.5)';
+  setTimeout(() => {
+    field.style.borderColor = '';
+    field.style.boxShadow = '';
+  }, 1800);
+}
+
+// 🧩 Validation before sending
+function validateForm() {
+  let valid = true;
+  msg.textContent = '';
+  msg.style.color = '#ff6b6b';
+
+  ['name', 'email', 'message'].forEach(id => {
+    const el = form[id];
+    if (!el.value.trim()) {
+      showFieldError(el);
+      msg.textContent = '⚠ Please fill all required fields.';
+      valid = false;
+    }
+  });
+
+  // Email format check
+  const emailVal = form.email.value.trim();
+  const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  if (emailVal && !emailPattern.test(emailVal)) {
+    showFieldError(form.email);
+    msg.textContent = '⚠ Please enter a valid email address.';
+    valid = false;
+  }
+
+  return valid;
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+
+  if (!validateForm()) return; // ❌ Stop if invalid
+
+  btn.classList.add('sending');
+  btnText.textContent = 'Sending...';
+  loader.style.display = 'inline-block';
+  msg.textContent = '';
+
+  const params = {
+    from_name: form.name.value,
+    from_email: form.email.value,
+    message: form.message.value,
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, params);
+    msg.style.color = '#4ade80';
+    msg.textContent = '✅ Message sent successfully!';
+    btn.classList.add('success');
+    btnText.textContent = 'Sent';
+    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    form.reset();
+  } catch (err) {
+    console.error(err);
+    msg.style.color = '#ff6b6b';
+    msg.textContent = '❌ Failed to send. Check console.';
+  } finally {
+    btn.classList.remove('sending');
+    loader.style.display = 'none';
+    setTimeout(() => {
+      btnText.textContent = 'Send Message';
+      btn.classList.remove('success');
+    }, 3000);
+  }
+});
+
+// Floating label active class
+document.querySelectorAll('.field input, .field textarea').forEach(el => {
+  el.addEventListener('input', () =>
+    el.parentNode.classList.toggle('filled', el.value.trim() !== '')
+  );
+});
+
+// Particles background
+tsParticles.load('bgParticles', {
+  fpsLimit: 60,
+  background: { color: 'transparent' },
+  particles: {
+    number: { value: 60, density: { enable: true, value_area: 800 } },
+    color: { value: ['#00e5ff', '#7b61ff', '#ff7ab6'] },
+    shape: { type: 'circle' },
+    opacity: { value: 0.4, random: true },
+    size: { value: 3, random: true },
+    move: { enable: true, speed: 1, random: true, outModes: 'out' },
+    links: { enable: true, distance: 120, color: '#00e5ff', opacity: 0.1, width: 1 },
+  },
+  interactivity: {
+    events: { onhover: { enable: true, mode: 'repulse' }, resize: true },
+    modes: { repulse: { distance: 100, duration: 0.4 } },
+  },
+});
+  </script>
+</body>
+</html>

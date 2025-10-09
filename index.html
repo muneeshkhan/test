@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="A K ENTERPRISES" />
   <title>A K ENTERPRISES</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     /* ----- Root / Base ----- */
     
@@ -522,6 +523,25 @@ button.prev:hover,button.next:hover {
     input:focus,textarea:focus{box-shadow:0 6px 18px rgba(11,92,255,0.08);border-color:var(--accent)}
     textarea{min-height:120px;resize:vertical}
 
+    /* ----- Futuristic Form Button ----- */
+
+    .futuristic-form{
+  text-align: center; /* Center the button */
+  margin-top: 20px; /* Top margin for spacing */
+    }
+
+.futuristic-form a {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #0b5cff, #3b82f6);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+  box-shadow: 0 8px 24px rgba(11,92,255,0.12);
+  text-decoration: none;
+  transition: background 0.3s, box-shadow 0.3s;   
+}
+
     /* ----- Footer ----- */
 
     footer {
@@ -691,12 +711,12 @@ section {
   
  <section class="">
   <div class="automation">
-    <h2>A K ENTERPRISES</h2>
+    <h2 style="text-align:center;object-fit:cover">A K ENTERPRISES</h2>
     <br><h3><strong>Where We Build Your Visions</strong></h3><br></br>
 
 Write a warm welcoming message for visitors. You can mention all the benefits or services with some real examples. You can also state how you emphasize on their well being. This often shows your concern and increases the chances of conversion.
 
-Tell people a little more to attract. You can mention some contact details as shown below to get in touch with visitors. ASRS Installations Service in bangalore</p>
+Tell people a little more to attract. You can mention some contact details as shown below to get in touch with visitors. A K Enterprises - Delivering Excellence Across India.</p>
   </div>
  </section>    
 
@@ -747,23 +767,14 @@ Tell people a little more to attract. You can mention some contact details as sh
     <!-- CONTACT -->
     <section id="contact" class="contact container" aria-labelledby="contact-h">
       <h2 id="contact-h" style="text-align:center;margin-bottom:20px;">Get in Touch</h2>
-      <p id="contact-h" style="text-align:center"><strong>Add a couple of lines that tell users how easily they can get in touch with you.<br> People prefer services where they can contact providers right away.</strong>
+      <p id="contact-h" style="text-align:center"><strong>Add a couple of lines that tell users how easily they can get in touch with you.<br> People prefer services where they can contact providers right away.</strong><br>
+      
 
+        <!--Contact-->
 
+      <div class="futuristic-form"><a href="contact.html" style="text-decoration: underline;"><h2>Contact Us</h2></a>
+</div>  
 </p>
-      <div class="contact-grid" style="margin-top:18px">
-        <form id="contactForm" novalidate>
-          <div class="form-control"><label for="fname">Name*</label><input id="fname" name="fname" required placeholder="Your Name"></div>
-          <div class="form-control"><label for="email">Email*</label><input id="email" type="email" name="email" required placeholder="Enter your email"></div>
-          <div class="form-control"><label for="phone">Phone*</label><input id="phone" name="phone" required placeholder="Enter your phone number"></div>
-          <div class="form-control"><label for="message">Message*</label><textarea id="message" name="message" required placeholder="Describe your project"></textarea></div>
-          <div style="display:flex;gap:12px;align-items:center">
-            <button class="btn btn-primary" type="submit">Send</button>
-            <div id="formMsg" class="muted"></div>
-          </div>
-        </form>
-      </div>
-    </section>
   </main>
 
   <!-- FOOTER -->
@@ -786,7 +797,7 @@ Tell people a little more to attract. You can mention some contact details as sh
 
   <script>
 //slider get 
-let images = ['annual.avif', 'control.avif', 'local.avif'];
+let images = ['yaseenphoto.jpg', 'control.avif', 'local.avif'];
 let currentIndex = 0;
 
 //Toggle button
@@ -829,46 +840,9 @@ function changeSlide(direction) {
 
 
     // Mobile nav toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mainNav = document.getElementById('mainNav');
-    mobileToggle.addEventListener('click', () => {
-      const isShown = mainNav.classList.toggle('show');
-      mobileToggle.setAttribute('aria-expanded', String(isShown));
-    });
+    // Removed unused mobile navigation toggle script to prevent errors.
 
-    // Simple contact form demo validation
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('fname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const msg = document.getElementById('message').value.trim();
-      const out = document.getElementById('formMsg');
 
-      if (!name || !email || !phone || !msg) {
-        out.textContent = '⚠️ Please fill all required fields.'; out.style.color = 'crimson'; return;
-      }
-      if (!/^\S+@\S+\.\S+$/.test(email)) {
-        out.textContent = '⚠️ Invalid email.'; out.style.color = 'crimson'; return;
-      }
-      out.textContent = '✅ Message sent (demo).'; out.style.color = 'green'; this.reset();
-    });
-
-    // Dark mode toggle
-    const darkToggle = document.getElementById('darkToggle');
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')){
-        localStorage.setItem('darkMode','enabled');
-      } else {
-        localStorage.setItem('darkMode','disabled');
-      }
-    });
-
-    // Load dark mode preference
-    if(localStorage.getItem('darkMode') === 'enabled'){
-      document.body.classList.add('dark-mode');
-    }
   </script>
 </body>
 </html>
