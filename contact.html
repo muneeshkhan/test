@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>A K ENTERPRISES</title>
+  <title>Contact — Futuristic Cyberpunk</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -16,7 +16,7 @@
       --radius:14px;
     }
 
-    *{box-sizing:border-box;}
+    *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
@@ -30,10 +30,11 @@
       color:#e6f0ff;
     }
 
+    /* Animated gradient backdrop */
     .bg-gradient{
       position:fixed;
       inset:0;
-      background-color: #0078D4;
+      background:linear-gradient(130deg, #002244, #080028, #002244, #080028);
       background-size:400% 400%;
       animation:shift 20s ease infinite;
       z-index:0;
@@ -44,8 +45,12 @@
       100%{background-position:0% 50%}
     }
 
-    #bgParticles{position:fixed;inset:0;z-index:1;pointer-events:none;}
+    /* Neon particle layer */
+    #bgParticles{
+      position:fixed;inset:0;z-index:1;pointer-events:none;
+    }
 
+    /* Floating hologram animation for card */
     .card{
       position:relative;
       z-index:2;
@@ -66,6 +71,7 @@
       100%{transform:perspective(600px) rotateX(0deg) translateY(0);}
     }
 
+    /* Heading hologram pulse */
     h2{
       text-align:center;
       font-size:1.8rem;
@@ -113,6 +119,7 @@
       color:var(--accent-1);
     }
 
+    /* 👇 Added: make manually typed text fields have same white BG as autofill */
     .field.filled input,
     .field.filled textarea,
     input:focus,
@@ -120,7 +127,9 @@
       background: #fff;
       color: #051421;
     }
+    /* 👆 End of addition */
 
+    /* Keep autofill also consistent */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
@@ -131,6 +140,7 @@
       transition: background-color 5000s ease-in-out 0s;
     }
 
+    /* Futuristic shimmer on button */
     .btn{
       display:flex;align-items:center;justify-content:center;gap:10px;
       padding:14px 18px;
@@ -196,15 +206,9 @@
         <label for="email" class="floating">Email address</label>
       </div>
 
-      <!-- ✅ Added Phone Number Field -->
-      <div class="field">
-        <input id="phone" name="phone" type="tel" required pattern="[0-9]{10}" />
-        <label for="phone" class="floating">Phone number</label>
-      </div>
-
       <div class="field">
         <textarea id="message" name="message" rows="5" required></textarea>
-        <label for="message" class="floating">Tell us about your project</label>
+        <label for="message" class="floating">Tell me about your project</label>
       </div>
 
       <button type="submit" id="submitBtn" class="btn">
@@ -221,8 +225,8 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
   <script>
-   const EMAILJS_USER_ID = 'ODelghAFNLITwoTpi';
-const EMAILJS_SERVICE = 'service_jya9qv3';
+   const EMAILJS_USER_ID = 'ODelghAFNLiTwoTpi';
+const EMAILJS_SERVICE = 'service_8cqs2bp';
 const EMAILJS_TEMPLATE = 'template_g01u49f';
 emailjs.init(EMAILJS_USER_ID);
 
@@ -232,6 +236,7 @@ const loader = btn.querySelector('.loader');
 const btnText = btn.querySelector('.btn-text');
 const msg = document.getElementById('formMessage');
 
+// ⚡ Neon glow animation for field error
 function showFieldError(field) {
   field.style.borderColor = '#ff3366';
   field.style.boxShadow = '0 0 10px rgba(255,51,102,0.5)';
@@ -241,32 +246,27 @@ function showFieldError(field) {
   }, 1800);
 }
 
+// 🧩 Validation before sending
 function validateForm() {
   let valid = true;
   msg.textContent = '';
   msg.style.color = '#ff6b6b';
 
-  ['name', 'email', 'phone', 'message'].forEach(id => {
+  ['name', 'email', 'message'].forEach(id => {
     const el = form[id];
     if (!el.value.trim()) {
       showFieldError(el);
-      msg.textContent = '⚠ Please fill all required fields.';
+      msg.textContent = '⚠️ Please fill all required fields.';
       valid = false;
     }
   });
 
+  // Email format check
   const emailVal = form.email.value.trim();
   const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   if (emailVal && !emailPattern.test(emailVal)) {
     showFieldError(form.email);
-    msg.textContent = '⚠ Please enter a valid email address.';
-    valid = false;
-  }
-
-  const phoneVal = form.phone.value.trim();
-  if (phoneVal && !/^\d{10}$/.test(phoneVal)) {
-    showFieldError(form.phone);
-    msg.textContent = '⚠ Please enter a valid 10-digit phone number.';
+    msg.textContent = '⚠️ Please enter a valid email address.';
     valid = false;
   }
 
@@ -276,7 +276,7 @@ function validateForm() {
 form.addEventListener('submit', async e => {
   e.preventDefault();
 
-  if (!validateForm()) return;
+  if (!validateForm()) return; // ❌ Stop if invalid
 
   btn.classList.add('sending');
   btnText.textContent = 'Sending...';
@@ -284,9 +284,8 @@ form.addEventListener('submit', async e => {
   msg.textContent = '';
 
   const params = {
-    from_name: form.name.value,
-    from_email: form.email.value,
-    phone: form.phone.value,
+    name: form.name.value,
+    email: form.email.value,
     message: form.message.value,
   };
 
@@ -312,12 +311,14 @@ form.addEventListener('submit', async e => {
   }
 });
 
+// Floating label active class
 document.querySelectorAll('.field input, .field textarea').forEach(el => {
   el.addEventListener('input', () =>
     el.parentNode.classList.toggle('filled', el.value.trim() !== '')
   );
 });
 
+// Particles background
 tsParticles.load('bgParticles', {
   fpsLimit: 60,
   background: { color: 'transparent' },
